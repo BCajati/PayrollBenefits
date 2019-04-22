@@ -30,6 +30,9 @@ namespace PayrollBenefits.Models.Employees
         public string LastName { get; set; }
 
         [NotMapped]
+        public Money BenefitCost { get; set; }
+
+        [NotMapped]
         public Salary Salary { get; set; }
 
         public  ICollection<Dependent> Dependents { get; set; }

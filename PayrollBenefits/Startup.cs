@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using PayrollBenefits.DataLayer;
+using PayrollBenefits.Managers;
 
 namespace PayrollBenefits
 {
@@ -33,6 +34,8 @@ namespace PayrollBenefits
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient<IPayrollManager, PayrollManager>();
+            //services.AddTransient<PayrollContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

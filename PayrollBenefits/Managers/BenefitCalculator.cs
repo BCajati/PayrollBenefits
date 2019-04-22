@@ -6,7 +6,7 @@ using PayrollBenefits.Models.Employees;
 
 namespace PayrollBenefits.Managers
 {
-    public class BenefitCalculator
+    public class BenefitCalculator : IBenefitCalculator
     {
         private List<Models.Benefits.IDiscount> benefitDiscounts = new  List<IDiscount>();
 

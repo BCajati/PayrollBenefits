@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PayrollBenefits.DataLayer;
+using PayrollBenefits.Managers;
 using PayrollBenefits.Models.Employees;
 
 namespace PayrollBenefits.Controllers
@@ -13,10 +14,12 @@ namespace PayrollBenefits.Controllers
     public class EmployeesController : Controller
     {
         private readonly PayrollContext _context;
+        private readonly IPayrollManager _payrollManager;
 
-        public EmployeesController(PayrollContext context)
+        public EmployeesController(PayrollContext context, IPayrollManager manager)
         {
             _context = context;
+            _payrollManager = manager;
         }
 
         // GET: Employees
@@ -39,8 +42,9 @@ namespace PayrollBenefits.Controllers
             {
                 return NotFound();
             }
-            
+
             var dependents = await _context.Dependents.Where(x => x.EmployeeId == id).ToListAsync();
+            employee.BenefitCost = _payrollManager.ComputeBenefitCost(employee);
 
             return View(employee);
         }
