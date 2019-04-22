@@ -39,6 +39,8 @@ namespace PayrollBenefits.Controllers
             {
                 return NotFound();
             }
+            
+            var dependents = await _context.Dependents.Where(x => x.EmployeeId == id).ToListAsync();
 
             return View(employee);
         }
