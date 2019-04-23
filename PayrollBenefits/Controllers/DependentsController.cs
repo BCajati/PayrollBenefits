@@ -41,9 +41,24 @@ namespace PayrollBenefits.Controllers
         }
 
         // GET: Dependents/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int? employeeId)
         {
-            return View();
+            if (employeeId == null)
+            {
+                return NotFound();
+            }
+
+            var employee = await _context.Employees
+                .FirstOrDefaultAsync(m => m.Id == employeeId);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["Parent"] = $"{employee.FirstName}  {employee.LastName}";
+
+            var dependent = new Dependent() { EmployeeId = employee.Id };
+            return View(dependent);
         }
 
         // POST: Dependents/Create
@@ -57,7 +72,7 @@ namespace PayrollBenefits.Controllers
             {
                 _context.Add(dependent);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), "Employees", new { id = dependent.EmployeeId });
             }
             return View(dependent);
         }

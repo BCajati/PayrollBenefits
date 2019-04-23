@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PayrollBenefits.Models.Employees
@@ -25,14 +26,18 @@ namespace PayrollBenefits.Models.Employees
 
         public int Id { get; set; }
 
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
 
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
 
         [NotMapped]
+        [DisplayName("Yearly Benefit Cost")]
         public Money BenefitCost { get; set; }
 
         [NotMapped]
+        [DisplayName("Salary")]
         public Salary Salary { get; set; }
 
         public  ICollection<Dependent> Dependents { get; set; }

@@ -15,6 +15,9 @@ namespace PayrollBenefits
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+
+            // Add seed db to main:
+            //https://github.com/aspnet/AspNetCore/issues/2188
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
