@@ -9,7 +9,6 @@ namespace PayrollBenefits.Models.Employees
         public Employee()
         {
             Dependents = new  List<Dependent>();
-            Salary = new DefaultSalary();
         }
 
         public Employee(string firstname, string lastname)
@@ -37,8 +36,8 @@ namespace PayrollBenefits.Models.Employees
         public Money BenefitCost { get; set; }
 
         [NotMapped]
-        [DisplayName("Salary")]
-        public Salary Salary { get; set; }
+        [DisplayName("Yearly Salary")]
+        public Money YearlySalary { get; set; }
 
         public  ICollection<Dependent> Dependents { get; set; }
     }

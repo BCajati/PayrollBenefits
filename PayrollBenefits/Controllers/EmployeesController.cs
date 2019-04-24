@@ -44,7 +44,7 @@ namespace PayrollBenefits.Controllers
             }
 
             var dependents = await _context.Dependents.Where(x => x.EmployeeId == id).ToListAsync();
-            employee.BenefitCost = _payrollManager.ComputeBenefitCost(employee);
+             _payrollManager.SetEmployeeBenefits(employee);
 
             return View(employee);
         }

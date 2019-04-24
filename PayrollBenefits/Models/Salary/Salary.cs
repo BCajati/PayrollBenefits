@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PayrollBenefits.Models
+﻿namespace PayrollBenefits.Models
 {
     public abstract class Salary
     {
@@ -11,12 +6,12 @@ namespace PayrollBenefits.Models
         public Salary()
         {
             // timeschedule is fixed for all salary types
-            PayrollSchedule = TimeSpan.FromDays(14);
+            WeeksPerPayPeriod = 2;
         }
 
         public abstract Money Amount { get; }
 
 
-        public TimeSpan PayrollSchedule { get; }
+        public int WeeksPerPayPeriod { get; }
     }
 }
